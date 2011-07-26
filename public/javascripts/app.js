@@ -62,7 +62,6 @@ Vernal.count = function() {
 }
 
 Vernal.get = function(skip, limit) {
-  if (Vernal.bottomReached) return;
   $.get("/entries?skip=" + skip + "&limit=" + limit, function(data) {
     $.each(data, function() {
       Vernal.append(this)
@@ -75,7 +74,9 @@ Vernal.get = function(skip, limit) {
 }
 
 Vernal.getMore = function() {
-  Vernal.get(Vernal.count(), Vernal.batchSize)
+  if (!Vernal.bottomReached) {
+    Vernal.get(Vernal.count(), Vernal.batchSize)
+  }
 }
 
 Vernal.prepend = function(data) {
