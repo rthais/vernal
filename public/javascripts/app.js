@@ -154,8 +154,6 @@ Vernal.auditMoreButton = function() {
   // need to setTimeout to play nicely with the expandingTextArea plugin
   setTimeout(function(){
     var moreButton = $('.more');
-    console.log($(document).height())
-    console.log($(window).height())
     if ($(document).height() == $(window).height()) {
       if (Vernal.bottomReached) {
         moreButton.hide();
