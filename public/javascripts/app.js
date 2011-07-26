@@ -144,7 +144,7 @@ Vernal.build = function(data){
       Vernal.delete(article);
     }
     return false;
-    });  
+  });  
     
   textarea.expandingTextArea();
   
