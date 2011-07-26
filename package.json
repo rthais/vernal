@@ -1,0 +1,10 @@
+{
+  "name": "diurnal",
+  "version": "1.0.0",
+
+  "dependencies": {
+    "express": "2.4.x",
+    "mongoose": "1.5.x",
+    "jade": "0.12.x"
+  }  
+}

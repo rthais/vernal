@@ -1,0 +1,14 @@
+header.clearfix
+  h1
+    span #{process.env.NAME}'s Journal
+  a.button.new(href = '') New Entry +
+
+#entries
+
+.more 
+  a(href="") more
+
+script
+  $(function() { 
+    Vernal.init() 
+  })

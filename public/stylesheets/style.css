@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'AdobeGaramondProRegular';
+    src: url('/fonts/agaramondpro-regular-webfont.eot');
+    src: url('/fonts/agaramondpro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/agaramondpro-regular-webfont.woff') format('woff'),
+         url('/fonts/agaramondpro-regular-webfont.ttf') format('truetype'),
+         url('/fonts/agaramondpro-regular-webfont.svg#AdobeGaramondProRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+  font-family: "AdobeGaramondProRegular";
+  padding-top:40px;
+}
+
+#content {
+  width: 650px;
+  margin: auto;
+  margin-bottom:20px;
+}
+
+.more {
+  margin-top: 20px;
+  text-align:center;
+  display:none;
+}
+
+a {
+  text-decoration:none;
+  color:#B0171F;
+}
+
+h1 {
+  font-size: 26pt;
+  color: #B0171F;
+}
+
+a.delete-button {
+  display:block;
+  height:13px;
+  width:13px;
+  background-image: url('/images/delete-button.png');
+  position:absolute;
+  right: 12px;
+  top: 2px;
+  display:none;
+}
+
+header h1 {
+  float:left;
+}
+
+header a {
+  float:right;
+}
+
+#entries {
+  clear:both;
+  margin-top:30px;
+}
+
+article { 
+  position:relative;
+  margin-top: 20px;
+}
+
+article > time {
+  display:block;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+article:not(:last-child):after {
+  content:"\2767";
+  font-size:32px;
+  text-align:center;
+  margin-top: 20px;
+  display:block;
+
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+textarea {
+  width:100%;
+  border:0;
+  margin:0;
+  outline:none;
+  height:50px;
+  font-family: "AdobeGaramondProRegular";
+  font-size: 14pt;
+  resize: none;
+}
+
+a.button {
+    color: #484848;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    font: bold 12px Helvetica, Arial, sans-serif;
+    line-height: 32px;
+    height: 32px;
+    display: block;
+
+    padding: 0 10px;
+    background: #f0f0f0;
+    background: -webkit-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background: -moz-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background: -ms-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background: -o-linear-gradient(top, #f7f7f7, #d1d1d1);
+    border: solid 1px #7f7f7f;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#ffffff')";
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#ffffff');
+    -webkit-transition: border-color .218s;
+    -moz-transition: border .218s;
+    -o-transition: border-color .218s;
+    transition: border-color .218s;
+}
+a.button:hover {
+    border: solid 1px #333;
+    color: #282828;
+    background: -webkit-linear-gradient(top, #ffffff, #dfdfdf);
+    background: -moz-linear-gradient(top, #ffffff, #dfdfdf);
+    background: -ms-linear-gradient(top, #ffffff, #dfdfdf);
+    background: -o-linear-gradient(top, #ffffff, #dfdfdf);
+}
+a.button:active {
+    border: solid 1px #7f7f7f;
+    background: #d0d0d0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a8a8a8), color-stop(0.15, #c6c6c6), to(#d8d8d8));
+    background: -webkit-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+    background: -moz-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+    background: -ms-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+    background: -o-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+}
