@@ -122,7 +122,8 @@ Vernal.build = function(data){
 
   var created = $("<time/>")
     .text(new Date(data.created_at)
-    .toString('dddd MMMM dS, yyyy'));
+      .toString('dddd MMMM dS, yyyy')
+    );
 
   var textarea =  $("<textarea/>")
     .focus(function(){
@@ -178,7 +179,7 @@ Vernal.auditMoreButton = function() {
 }
 
 Vernal.init = function(){
-  Vernal.getMore();
+  $(document).one('typekit.active', Vernal.getMore);
   
   $("a.button.new").click(function() {
     Vernal['new']();
