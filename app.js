@@ -75,7 +75,6 @@ app.post('/entries/:id', function(req,res) {
     if (err || !doc){
       res.send(500)
     } else {
-      console.log(req.param('delta'))
       doc.patchBody(req.param('delta'))
       doc.save(function(err) {
         if (err) {

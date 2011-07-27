@@ -1,5 +1,4 @@
 var Vernal = {
-  lastContent: null,
   watching: null,
   batchSize: 3,
   bottomReached: false,
@@ -18,9 +17,8 @@ Vernal.watch = function(sync) {
 
   if (article.data('saving')) return;
 
-  var prevContent = Vernal.lastContent;
+  var prevContent = article.data('lastContent');
   var newContent = article.find('textarea').val();
-  Vernal.lastContent = newContent;
 
   if (prevContent == newContent && !article.data('hasError')) return;
 
@@ -33,9 +31,20 @@ Vernal.watch = function(sync) {
     url: "/entries/" + article.data('article-id'),
     data: { delta: Vernal.toDelta(prevContent, newContent) },
     async: async,
-    error: Vernal.onError(article),
-    success: Vernal.onSuccess(article)
+    success: Vernal.onSuccess(article, newContent),
+    error: Vernal.onError(article)
   });
+}
+
+Vernal.onSuccess = function(article, newContent) {
+  return function() {
+    article.data('lastContent', newContent);
+    article.data('saving', false);
+    if (article.data('hasError')) {
+      article.data('hasError', false);
+      article.trigger('removeError');
+    }
+  }
 }
 
 Vernal.onError = function(article) {
@@ -48,19 +57,11 @@ Vernal.onError = function(article) {
   }
 }
 
-Vernal.onSuccess = function(article) {
-  return function() {
-    article.data('saving', false);
-    if (article.data('hasError')) {
-      article.data('hasError', false);
-      article.trigger('removeError');
-    }
-  }
-}
-
 Vernal.watchNew = function(article) {
   Vernal.watching = article;
-  Vernal.lastContent = article.find('textarea').val();
+  if (!article.data('lastContent')) {
+    article.data('lastContent', article.find('textarea').val());
+  }
 }
 
 Vernal.count = function() {
