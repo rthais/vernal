@@ -124,7 +124,6 @@ Vernal.build = function(data){
     .toString('dddd MMMM dS, yyyy'));
 
   var textarea =  $("<textarea/>")
-    .val(data.body)
     .focus(function(){
       Vernal.watchNew($(this).parent('article'));
     })
@@ -154,7 +153,9 @@ Vernal.build = function(data){
     return false;
   });
 
-  textarea.expandingTextArea();
+  textarea
+    .expandingTextArea()
+    .val(data.body);
 
   return article;
 }
