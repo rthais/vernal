@@ -3,6 +3,9 @@ html
   head
     link(rel='stylesheet', href='/stylesheets/reset.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="http://use.typekit.com/tvn8qmy.js")
+    script
+      try{Typekit.load({active: function(){$(document).trigger('typekit.active')}});}catch(e){}
     
     title #{process.env.NAME}'s Journal
 
@@ -15,7 +18,4 @@ html
     script(src='/javascripts/expanding-text-area.js')
     script(src='/javascripts/diff-match-patch.js')
     script(src='/javascripts/app.js')
-    script(src="http://use.typekit.com/tvn8qmy.js")
-    script
-      try{Typekit.load({active: function(){$(document).trigger('typekit.active')}});}catch(e){}
     
