@@ -201,5 +201,5 @@ Vernal.init = function(){
   // Watch on unload for safety
   $(window).unload(function() { Vernal.watch(true) });
   
-  Vernal.getMore();
+  setTimeout(Vernal.getMore, 0);
 }
