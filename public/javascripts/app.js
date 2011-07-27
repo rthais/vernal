@@ -11,7 +11,6 @@ Vernal.toDelta = function(text1, text2){
 }
 
 Vernal.watch = function(sync) {
-  var start = new Date
   var article = Vernal.watching;
 
   if (!article) return;
@@ -37,8 +36,6 @@ Vernal.watch = function(sync) {
     success: Vernal.onSuccess(article, newContent),
     error: Vernal.onError(article)
   });
-  var end = new Date
-  console.log(end - start)
 }
 
 Vernal.onSuccess = function(article, newContent) {
