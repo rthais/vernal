@@ -32,6 +32,7 @@ Vernal.watch = function(sync) {
     data: { delta: Vernal.toDelta(prevContent, newContent) },
     async: async,
     timeout: 4000,
+    cache: false,
     success: Vernal.onSuccess(article, newContent),
     error: Vernal.onError(article)
   });
