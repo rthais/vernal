@@ -1,17 +1,5 @@
-@font-face {
-    font-family: 'AdobeGaramondProRegular';
-    src: url('/fonts/agaramondpro-regular-webfont.eot');
-    src: url('/fonts/agaramondpro-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/agaramondpro-regular-webfont.woff') format('woff'),
-         url('/fonts/agaramondpro-regular-webfont.ttf') format('truetype'),
-         url('/fonts/agaramondpro-regular-webfont.svg#AdobeGaramondProRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 body {
-  font-family: "AdobeGaramondProRegular";
+  font-family: "adobe-garamond-pro";
   padding-top:40px;
   color: #222;
 }
@@ -97,7 +85,7 @@ textarea {
   margin:0;
   outline:none;
   color: #222;
-  font-family: "AdobeGaramondProRegular";
+  font-family: "adobe-garamond-pro";
   font-size: 14pt;
   resize: none;
 }
