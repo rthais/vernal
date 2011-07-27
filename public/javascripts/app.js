@@ -178,7 +178,6 @@ Vernal.auditMoreButton = function() {
 }
 
 Vernal.init = function(){
-  Vernal.getMore();
 
   $("a.button.new").click(function() {
     Vernal['new']();
@@ -201,4 +200,6 @@ Vernal.init = function(){
 
   // Watch on unload for safety
   $(window).unload(function() { Vernal.watch(true) });
+  
+  Vernal.getMore();
 }
