@@ -2,30 +2,36 @@ var Vernal = {
   lastContent: null,
   watching: null,
   batchSize: 3,
-  bottomReached: false
+  bottomReached: false,
+  googleDiff: new diff_match_patch(),
 };
+
+Vernal.toDelta = function(text1, text2){
+  var diff = Vernal.googleDiff.diff_main(text1, text2);
+  return Vernal.googleDiff.diff_toDelta(diff);
+}
 
 Vernal.watch = function(sync) {
   var article = Vernal.watching;
-  
+
   if (!article) return;
-  
+
   if (article.data('saving')) return;
-  
+
   var prevContent = Vernal.lastContent;
   var newContent = article.find('textarea').val();
   Vernal.lastContent = newContent;
 
   if (prevContent == newContent && !article.data('hasError')) return;
-  
+
   var async = !sync;
-  
+
   article.data('saving', true);
-  
+
   $.ajax({
     type: 'POST',
     url: "/entries/" + article.data('article-id'),
-    data: { body: newContent },
+    data: { delta: Vernal.toDelta(prevContent, newContent) },
     async: async,
     error: Vernal.onError(article),
     success: Vernal.onSuccess(article)
@@ -110,18 +116,18 @@ Vernal.build = function(data){
   var deleteButton = $("<a/>")
     .addClass('delete-button')
     .attr("href", "")
-    
+
   var created = $("<time/>")
     .text(new Date(data.created_at)
     .toString('dddd MMMM dS, yyyy'));
-    
+
   var textarea =  $("<textarea/>")
     .val(data.body)
     .focus(function(){
       Vernal.watchNew($(this).parent('article'));
     })
     .blur(Vernal.watch);
-    
+
   var article = $("<article/>")
     .append(deleteButton)
     .append(created)
@@ -138,16 +144,16 @@ Vernal.build = function(data){
     }, function() {
       $(this).find('a.delete-button').hide()
     });
-    
+
   deleteButton.click(function() {
     if (confirm('Delete entry?')) {
       Vernal.delete(article);
     }
     return false;
-  });  
-    
+  });
+
   textarea.expandingTextArea();
-  
+
   return article;
 }
 
@@ -164,31 +170,31 @@ Vernal.auditMoreButton = function() {
     } else {
       moreButton.hide();
     }
-  }, 0);  
+  }, 0);
 }
 
 Vernal.init = function(){
   Vernal.getMore();
-  
+
   $("a.button.new").click(function() {
     Vernal['new']();
     return false;
   })
-  
+
   $(document).scroll(function(){
     if ($(window).scrollTop() + 2 >= $(document).height() - $(window).height()) {
       Vernal.getMore();
     }
   })
-  
+
   $('.more').click(function() {
     Vernal.getMore();
     return false;
   })
-  
+
   // Watch with 1 second intervals
   setInterval(Vernal.watch, 1000);
-  
+
   // Watch on unload for safety
   $(window).unload(function() { Vernal.watch(true) });
 }

@@ -1,6 +1,7 @@
 var express  = require('express');
 var app   = express.createServer();
 var mongoose = require('mongoose');
+var googleDiff = new (require('diff_match_patch').diff_match_patch)();
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
@@ -27,6 +28,14 @@ entrySchema.pre('save', function(next) {
   this.updated_at = Date.now();
   next();
 });
+
+entrySchema.method('patchBody', function(delta) {
+  var oldBody = this.body || ""
+  var diff = googleDiff.diff_fromDelta(oldBody, delta);
+  var patches = googleDiff.patch_make(oldBody, diff);
+  var patchResult = googleDiff.patch_apply(patches, oldBody);
+  this.body = patchResult[0];
+})
 
 var Entry = mongoose.model('Entry', entrySchema);
 
@@ -66,7 +75,8 @@ app.post('/entries/:id', function(req,res) {
     if (err || !doc){
       res.send(500)
     } else {
-      doc.body = req.param('body')
+      console.log(req.param('delta'))
+      doc.patchBody(req.param('delta'))
       doc.save(function(err) {
         if (err) {
           res.send(500)
