@@ -104,7 +104,7 @@ Vernal['new'] = function() {
   });
 }
 
-Vernal.delete = function(article) {
+Vernal['delete'] = function(article) {
   $.ajax({
     type: 'DELETE',
     url: "/entries/" + article.data('article-id'),
