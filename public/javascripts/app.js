@@ -203,3 +203,5 @@ Vernal.init = function(){
   // Watch on unload for safety
   $(window).unload(function() { Vernal.watch(true) });
 }
+
+$(document).ready(function(){ Vernal.init() });

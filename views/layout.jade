@@ -1,6 +1,15 @@
 !!! 5
 html
   head
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    
+    title #{process.env.NAME}'s Journal
+
+  body
+    #content
+      != body
+      
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
     script(src='/javascripts/date.js')
     script(src='/javascripts/expanding-text-area.js')
@@ -9,11 +18,4 @@ html
     script(src="http://use.typekit.com/tvn8qmy.js")
     script
       try{Typekit.load({active: function(){$(document).trigger('typekit.active')}});}catch(e){}
-
-    title #{process.env.NAME}'s Journal
-    link(rel='stylesheet', href='/stylesheets/reset.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-
-  body
-    #content
-      != body
+    
