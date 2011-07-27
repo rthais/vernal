@@ -178,7 +178,7 @@ Vernal.auditMoreButton = function() {
 }
 
 Vernal.init = function(){
-  Vernal.getMore();
+  setTimeout(Vernal.getMore, 0);
 
   $("a.button.new").click(function() {
     Vernal['new']();
