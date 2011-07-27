@@ -201,7 +201,7 @@ $.fn.expandingTextArea = function() {
             _busyResizing = false;
         }
 
-        _setTimoutHandle = setTimeout(_onInput, 5);
+        _setTimoutHandle = setTimeout(_onInput, 0);
         $this.unbind('.expandingTextarea')
             .bind('keyup.expandingTextarea', _onInput)
             .bind('keydown.expandingTextarea', _onInput)
