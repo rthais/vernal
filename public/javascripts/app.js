@@ -197,7 +197,7 @@ Vernal.init = function(){
   })
 
   // Watch with 1 second intervals
-  setInterval(Vernal.watch, 2000);
+  setInterval(Vernal.watch, 1000);
 
   // Watch on unload for safety
   $(window).unload(function() { Vernal.watch(true) });
