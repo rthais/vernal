@@ -12,6 +12,13 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public'));
 })
 
+// Don't die on uncaught exceptions
+process.addListener("uncaughtException", function (err) {
+    console.error("Uncaught Exception: " + err);
+    console.error(err.stack);
+});
+
+
 mongoose.connect(process.env.MONGOLAB_URI);
 mongoose.connection.db.serverConfig.connection.autoReconnect = true;
 
@@ -30,7 +37,7 @@ entrySchema.pre('save', function(next) {
 });
 
 entrySchema.method('patchBody', function(delta) {
-  var oldBody = this.body || ""
+  var oldBody = this.body || "";
   var diff = googleDiff.diff_fromDelta(oldBody, delta);
   var patches = googleDiff.patch_make(oldBody, diff);
   var patchResult = googleDiff.patch_apply(patches, oldBody);
