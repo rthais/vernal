@@ -11,6 +11,7 @@ Vernal.toDelta = function(text1, text2){
 }
 
 Vernal.watch = function(sync) {
+  var start = new Date
   var article = Vernal.watching;
 
   if (!article) return;
@@ -21,11 +22,11 @@ Vernal.watch = function(sync) {
   var newContent = article.find('textarea').val();
 
   if (prevContent == newContent && !article.data('hasError')) return;
-
-  var async = !sync;
+  
+  var async = !(sync === true);
 
   article.data('saving', true);
-
+  
   $.ajax({
     type: 'POST',
     url: "/entries/" + article.data('article-id'),
@@ -36,6 +37,8 @@ Vernal.watch = function(sync) {
     success: Vernal.onSuccess(article, newContent),
     error: Vernal.onError(article)
   });
+  var end = new Date
+  console.log(end - start)
 }
 
 Vernal.onSuccess = function(article, newContent) {
@@ -197,7 +200,7 @@ Vernal.init = function(){
   })
 
   // Watch with 1 second intervals
-  setInterval(Vernal.watch, 1000);
+  setInterval(Vernal.watch, 2000);
 
   // Watch on unload for safety
   $(window).unload(function() { Vernal.watch(true) });
