@@ -149,7 +149,7 @@ Vernal.build = function(data){
 
   deleteButton.click(function() {
     if (confirm('Delete entry?')) {
-      Vernal.delete(article);
+      Vernal['delete'](article);
     }
     return false;
   });
