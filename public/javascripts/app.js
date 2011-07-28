@@ -109,6 +109,9 @@ Vernal['delete'] = function(article) {
     type: 'DELETE',
     url: "/entries/" + article.data('article-id'),
     success: function() {
+      if (Vernal.watching == article){
+        Vernal.watching = null;
+      }
       article.remove();
       Vernal.auditMoreButton();
     }
