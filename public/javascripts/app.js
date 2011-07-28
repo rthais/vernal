@@ -109,7 +109,7 @@ Vernal['delete'] = function(article) {
     type: 'DELETE',
     url: "/entries/" + article.data('article-id'),
     success: function() {
-      if (Vernal.watching == article){
+      if (Vernal.watching.is(article)){
         Vernal.watching = null;
       }
       article.remove();
