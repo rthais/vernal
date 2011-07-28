@@ -1,7 +1,7 @@
 body {
   font-family: "adobe-garamond-pro";
   padding-top:40px;
-  color: #222;
+  color: #111;
 }
 
 #content {
@@ -50,7 +50,7 @@ header a {
   margin-top:30px;
 }
 
-article { 
+article {
   position:relative;
   margin-top: 20px;
 }
@@ -84,7 +84,7 @@ textarea {
   border:0;
   margin:0;
   outline:none;
-  color: #222;
+  color: #111;
   font-family: "adobe-garamond-pro";
   font-size: 14pt;
   resize: none;
