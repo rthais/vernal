@@ -21,11 +21,11 @@ Vernal.watch = function(sync) {
   var newContent = article.find('textarea').val();
 
   if (prevContent == newContent && !article.data('hasError')) return;
-  
+
   var async = !(sync === true);
 
   article.data('saving', true);
-  
+
   $.ajax({
     type: 'POST',
     url: "/entries/" + article.data('article-id'),
@@ -109,7 +109,7 @@ Vernal['delete'] = function(article) {
     type: 'DELETE',
     url: "/entries/" + article.data('article-id'),
     success: function() {
-      if (Vernal.watching.is(article)){
+      if (Vernal.watching && Vernal.watching.is(article)){
         Vernal.watching = null;
       }
       article.remove();
@@ -183,7 +183,7 @@ Vernal.auditMoreButton = function() {
 
 Vernal.init = function(){
   $(document).one('typekit.active', Vernal.getMore);
-  
+
   $("a.button.new").click(function() {
     Vernal['new']();
     return false;
