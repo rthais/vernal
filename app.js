@@ -20,7 +20,6 @@ process.addListener("uncaughtException", function (err) {
 
 
 mongoose.connect(process.env.MONGOLAB_URI);
-mongoose.connection.db.serverConfig.connection.autoReconnect = true;
 
 var Schema = mongoose.Schema;
 
