@@ -182,7 +182,7 @@ Vernal.auditMoreButton = function() {
 }
 
 Vernal.init = function(){
-  $(document).one('typekit.active', Vernal.getMore);
+  Vernal.getMore()
 
   $("a.button.new").click(function() {
     Vernal['new']();
