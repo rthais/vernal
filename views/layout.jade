@@ -3,19 +3,19 @@ html
   head
     link(rel='stylesheet', href='/stylesheets/reset.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=EB+Garamond')
     script(src="http://use.typekit.com/tvn8qmy.js")
     script
       try{Typekit.load({active: function(){$(document).trigger('typekit.active')}});}catch(e){}
-    
+
     title #{process.env.NAME}'s Journal
 
   body
     #content
       != body
-      
+
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
     script(src='/javascripts/date.js')
     script(src='/javascripts/expanding-text-area.js')
     script(src='/javascripts/diff-match-patch.js')
     script(src='/javascripts/app.js')
-    
