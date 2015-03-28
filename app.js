@@ -18,7 +18,6 @@ process.addListener("uncaughtException", function (err) {
     console.error(err.stack);
 });
 
-
 mongoose.connect(process.env.MONGOLAB_URI);
 
 var Schema = mongoose.Schema;
