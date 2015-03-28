@@ -82,6 +82,20 @@ Vernal.get = function(skip, limit) {
   })
 }
 
+Vernal.wordCount = function(event, article) {
+  article = article || Vernal.watching;
+  if (article) {
+    var count;
+    var text = article.find('textarea').val();
+    if (text == "") {
+      count = 0
+    } else {
+      count = text.trim().replace(/\s+/gi, ' ').split(' ').length
+    }
+    article.find('.word-count').text(count)
+  }
+}
+
 Vernal.getMore = function() {
   if (!Vernal.bottomReached) {
     Vernal.get(Vernal.count(), Vernal.batchSize)
@@ -123,6 +137,9 @@ Vernal.build = function(data){
     .addClass('delete-button')
     .attr("href", "")
 
+  var wordCount = $("<span/>")
+    .addClass('word-count')
+
   var created = $("<time/>")
     .text(new Date(data.created_at)
       .toString('dddd MMMM dS, yyyy')
@@ -132,10 +149,13 @@ Vernal.build = function(data){
     .focus(function(){
       Vernal.watchNew($(this).parent('article'));
     })
-    .blur(Vernal.watch);
+    .blur(Vernal.watch)
+    .blur(Vernal.wordCount)
+    .keyup(Vernal.wordCount)
 
   var article = $("<article/>")
     .append(deleteButton)
+    .append(wordCount)
     .append(created)
     .append(textarea)
     .data("article-id", data._id)
@@ -147,8 +167,10 @@ Vernal.build = function(data){
     })
     .hover(function() {
       $(this).find('a.delete-button').show()
+      $(this).find('span.word-count').show()
     }, function() {
       $(this).find('a.delete-button').hide()
+      $(this).find('span.word-count').hide()
     });
 
   deleteButton.click(function() {
@@ -161,6 +183,8 @@ Vernal.build = function(data){
   textarea
     .expandingTextArea()
     .val(data.body);
+
+  Vernal.wordCount(null, article)
 
   return article;
 }

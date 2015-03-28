@@ -39,6 +39,16 @@ a.delete-button {
   display:none;
 }
 
+span.word-count {
+  height: 13px;
+  position: absolute;
+  text-align: right;
+  right: 35px;
+  top: 1px;
+  color: #aaa;
+  display: none;
+}
+
 header h1 {
   float:left;
 }
